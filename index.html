@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<base target="_top">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>CNX RUN BIKE — สมัครนักแข่ง</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#c6283d;--red2:#d93a50;--gold:#f2c94c;--bg:#000;--s1:#1c1c1e;--s2:#2c2c2e;--sep:rgba(255,255,255,.12);--tx:#f5f5f7;--mu:#a1a1a6;--r:22px;color-scheme:dark}
+*{box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;color:var(--tx);font:17px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Noto Sans Thai","Sukhumvit Set",Thonburi,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+.nav{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--sep);padding-top:env(safe-area-inset-top)}
+.nav-in{max-width:680px;margin:0 auto;height:48px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;font-size:14px}
+.brand{font-weight:700;letter-spacing:.04em}.brand b{color:var(--red2)}
+.page{max-width:680px;margin:0 auto;padding:0 16px calc(40px + env(safe-area-inset-bottom))}
+.hero{text-align:center;padding:56px 8px 36px;background:radial-gradient(70% 60% at 50% 0,rgba(198,40,61,.28),transparent 70%)}
+h1{margin:0;font-size:clamp(40px,12vw,72px);line-height:1.04;font-weight:700;letter-spacing:-.03em}
+.lead{margin:12px 0 0;font-size:clamp(19px,5vw,24px);color:var(--mu);font-weight:500}
+h2{margin:0 0 4px;font-size:22px;line-height:1.25;font-weight:700;letter-spacing:-.02em}
+p{margin:8px 0 0}.muted{color:var(--mu);font-size:14px}
+.card{background:var(--s1);border-radius:var(--r);padding:24px 20px;margin:0 0 14px}
+.status{padding:12px 14px;margin:14px 0 0;border-radius:14px;background:var(--s2);font-size:15px;overflow-wrap:anywhere}
+.field-label{display:block;margin:18px 0 8px;font-size:14px;font-weight:600;color:var(--mu)}
+input[type=text],input[type=date],input[type=tel],select{display:block;width:100%;min-height:52px;padding:12px 16px;border:0;border-radius:14px;background:var(--s2);color:var(--tx);font:inherit;font-size:17px;outline:none;-webkit-appearance:none;appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a1a1a6' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+input::placeholder{color:#6e6e73}
+input:focus,select:focus{box-shadow:0 0 0 3px rgba(242,201,76,.45)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.primary,button.primary{display:block;width:100%;min-height:56px;margin:0;padding:14px 20px;border:0;border-radius:999px;background:var(--red);color:#fff;font:inherit;font-size:18px;font-weight:600;cursor:pointer;transition:background .2s,transform .15s}
+.primary:hover{background:var(--red2)}.primary:active{transform:scale(.98)}
+.primary:disabled,button:disabled{background:var(--s2);color:#6e6e73;cursor:not-allowed;transform:none}
+#message{margin-top:14px;white-space:pre-wrap;overflow-wrap:anywhere;text-align:center;font-size:15px}
+.error{color:#ff8a98}.success{color:#7fe3a1}
+[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+#registrationStatus{display:inline-block;margin-top:22px;padding:8px 16px;border-radius:999px;font-size:14px;font-weight:600;background:rgba(242,201,76,.14);color:var(--gold)}
+.countdown-box{margin:34px auto 0;max-width:460px}
+.countdown-title{font-size:14px;font-weight:600;color:var(--mu)}
+.countdown-value{margin:6px 0;font-size:clamp(34px,10vw,52px);font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--gold);line-height:1.15;overflow-wrap:anywhere}
+.countdown-note{font-size:13px;color:var(--mu)}
+.countdown-box.closed .countdown-value,.countdown-box.closed .countdown-title{color:#ff8a98}
+.cnx-rules-panel{margin:0 0 14px;padding:24px 20px;border-radius:var(--r);background:linear-gradient(145deg,#2a0d13,#1c1c1e 70%)}
+.cnx-rules-panel h2{color:var(--gold)}
+.cnx-rules-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.cnx-rules-actions a{display:flex;align-items:center;justify-content:center;min-height:48px;padding:10px 14px;border-radius:999px;text-align:center;text-decoration:none;font-size:15px;font-weight:600}
+.cnx-rule-view{background:var(--gold);color:#1a1405}.cnx-rule-download{background:rgba(255,255,255,.1);color:var(--tx)}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin:18px 0 14px;padding:3px;border-radius:12px;background:var(--s2)}
+.tab{min-height:40px;border:0;border-radius:10px;background:transparent;color:var(--mu);font:inherit;font-size:15px;font-weight:600;cursor:pointer;transition:background .2s,color .2s}
+.tab.active{background:var(--gold);color:#1a1405}
+.class-list{display:grid;gap:8px;color:var(--mu);font-size:15px}
+.class-item{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;background:var(--s2);color:var(--tx);cursor:pointer;overflow-wrap:anywhere;box-shadow:inset 0 0 0 1.5px transparent;transition:box-shadow .2s,background .2s}
+.class-item:has(input:checked){background:rgba(242,201,76,.1);box-shadow:inset 0 0 0 1.5px var(--gold)}
+.class-item input{-webkit-appearance:none;appearance:none;flex:none;width:24px;height:24px;margin:0;border-radius:50%;border:2px solid #636366;background:transparent;cursor:pointer}
+.class-item input:checked{border-color:var(--red);background:var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/16px no-repeat}
+.fee-row{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--sep)}
+.fee-row>:last-child{text-align:right}
+.fee-row.total{border:0;padding-top:16px;font-size:clamp(26px,7vw,34px);font-weight:700;color:var(--gold);letter-spacing:-.02em}
+.rules-acceptance{display:flex;align-items:flex-start;gap:14px;margin:0 0 14px;padding:18px 20px;border-radius:var(--r);background:var(--s1);cursor:pointer}
+#acceptedRules{-webkit-appearance:none;appearance:none;flex:none;width:26px;height:26px;margin:2px 0 0;border-radius:8px;border:2px solid #636366;cursor:pointer}
+#acceptedRules:checked{border-color:var(--red);background:var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/18px no-repeat}
+.cta{position:sticky;bottom:0;z-index:10;margin:0 -16px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-top:1px solid var(--sep)}
+.hero>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+@media(max-width:480px){.cnx-rules-actions{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in"><span class="brand">CNX <b>RUN BIKE</b></span><span class="muted">สมัครนักแข่ง</span></div></nav>
+<main class="page">
+
+<header class="hero">
+  <h1>CNX RUN BIKE</h1>
+  <p class="lead">ระบบสมัครนักแข่ง</p>
+  <div id="registrationStatus">กำลังตรวจสอบสถานะรับสมัคร...</div>
+  <div id="registrationCountdown" class="countdown-box" aria-live="polite">
+    <div class="countdown-title">นับถอยหลังวันปิดรับสมัคร</div>
+    <div id="countdownValue" class="countdown-value">กำลังโหลด...</div>
+    <div id="countdownNote" class="countdown-note">กำลังตรวจสอบกำหนดการรับสมัคร</div>
+  </div>
+</header>
+
+<section class="cnx-rules-panel">
+  <h2>กติกาการแข่งขัน</h2>
+  <p class="muted">ผู้ปกครองโปรดอ่านกติกาและเงื่อนไขการแข่งขัน ก่อนลงทะเบียนนักแข่ง</p>
+  <div class="cnx-rules-actions">
+    <a class="cnx-rule-view" href="https://drive.google.com/file/d/1gg2g4z976ZHM-PNB2DDcJdo2kGZ0yHvK/preview" target="_blank" rel="noopener noreferrer">อ่านกติกาออนไลน์</a>
+    <a class="cnx-rule-download" href="https://drive.google.com/uc?export=download&amp;id=1gg2g4z976ZHM-PNB2DDcJdo2kGZ0yHvK" target="_blank" rel="noopener noreferrer">ดาวน์โหลด PDF</a>
+  </div>
+</section>
+
+<form id="registrationForm">
+  <section class="card">
+    <h2>ข้อมูลนักแข่ง</h2>
+    <label class="field-label" for="name">ชื่อ-นามสกุลนักแข่ง *</label>
+    <input id="name" name="name" type="text" autocomplete="name" required>
+    <label class="field-label" for="nicknameTh">ชื่อเล่นนักแข่ง (ภาษาไทย) *</label>
+    <input id="nicknameTh" name="nicknameTh" type="text" autocomplete="off" placeholder="เช่น น้องโอบ" required>
+    <label class="field-label" for="nicknameEn">ชื่อเล่นนักแข่ง (ภาษาอังกฤษ) *</label>
+    <input id="nicknameEn" name="nicknameEn" type="text" autocomplete="off" placeholder="เช่น Ob" required>
+    <label class="field-label" for="team">สังกัดทีม <span class="muted">(ถ้ามี)</span></label>
+    <input id="team" name="team" type="text" autocomplete="organization" maxlength="80" placeholder="เช่น CNX Racing Team หรือเว้นว่างถ้าไม่มีสังกัด">
+    <label class="field-label" for="dob">วันเกิด *</label>
+    <input id="dob" name="dob" type="date" required>
+    <label class="field-label" for="gender">เพศ *</label>
+    <select id="gender" name="gender" required>
+      <option value="">เลือกเพศ</option>
+      <option value="ชาย">ชาย</option>
+      <option value="หญิง">หญิง</option>
+    </select>
+    <div id="ageEligibilityStatus" class="status" aria-live="polite">กรุณากรอกวันเกิดและเลือกเพศ เพื่อแสดงรุ่นที่สมัครได้</div>
+    <p id="ageEligibilityHint" class="muted">ระบบคำนวณอายุ ณ เดือนแข่งขัน ผู้สมัครอายุต่ำกว่าเกณฑ์ของรุ่นสมัครได้ หากอายุไม่เกินอายุสูงสุดของรุ่นนั้น</p>
+  </section>
+
+  <section class="card">
+    <h2>ข้อมูลผู้ปกครอง</h2>
+    <label class="field-label" for="guardian">ชื่อ-นามสกุลผู้ปกครอง *</label>
+    <input id="guardian" name="guardian" type="text" autocomplete="name" required>
+    <label class="field-label" for="phone">เบอร์โทรศัพท์ผู้ปกครอง *</label>
+    <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" required>
+  </section>
+
+  <section class="card">
+    <h2>เลือกรุ่นการแข่งขัน</h2>
+    <p class="muted">เลือกได้หลายรุ่น ระบบคำนวณค่าสมัครแยกแต่ละประเภท</p>
+    <div class="tabs">
+      <button type="button" class="tab active" data-category="Proud">Proud</button>
+      <button type="button" class="tab" data-category="Racing">Racing</button>
+      <button type="button" class="tab" data-category="Pedal">Pedal</button>
+    </div>
+    <div id="classList" class="class-list">กำลังโหลดรุ่นการแข่งขัน...</div>
+  </section>
+
+  <section class="card">
+    <h2>สรุปค่าสมัคร</h2>
+    <div id="feeBreakdown"><p class="muted">ยังไม่ได้เลือกรุ่น</p></div>
+    <div class="fee-row total"><span>ยอดรวม</span><span id="totalFee">0 บาท</span></div>
+    <p class="muted">รุ่นแรกของแต่ละประเภท 850 บาท รุ่นเพิ่มเติมในประเภทเดียวกัน 350 บาท</p>
+  </section>
+
+  <label class="rules-acceptance" for="acceptedRules">
+    <input id="acceptedRules" name="acceptedRules" type="checkbox" value="yes">
+    <span><strong>ข้าพเจ้าอ่านและยอมรับกติกาการแข่งขัน CNX RUN BIKE</strong><br><span class="muted">ต้องทำเครื่องหมายยอมรับก่อนส่งใบสมัครทุกครั้ง</span></span>
+  </label>
+
+  <div class="cta"><button id="submitButton" class="primary" type="submit" disabled>กำลังเตรียมระบบ...</button></div>
+</form>
+<div id="message" role="status" aria-live="polite"></div>
+
+</main>
+<script>
+/* ตัวเชื่อม: ให้หน้าเว็บเรียกฟังก์ชันบน Netlify ด้วยรูปแบบเดิม google.script.run */
+window.google={script:{run:(function make(ok,no){return new Proxy({},{get(_,k){
+ if(k==='withSuccessHandler')return f=>make(f,no);
+ if(k==='withFailureHandler')return f=>make(ok,f);
+ return(...args)=>fetch('/.netlify/functions/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fn:k,args})})
+  .then(async r=>{let j={};try{j=await r.json()}catch(e){}if(!r.ok||j.error)throw new Error(j.error||'เกิดข้อผิดพลาด ('+r.status+')');return j.result})
+  .then(v=>ok&&ok(v),e=>no&&no(e))}})})(null,null)}};
+</script>
+<script>
+  let classGroups = {
+    Proud: [],
+    Racing: [],
+    Pedal: []
+  };
+
+  let activeCategory = 'Proud';
+  let classesLoaded = false;
+  let statusLoaded = false;
+  let registrationOpen = false;
+  let submitting = false;
+  let eligibilityLoaded = false;
+  let eligibleClassNames = new Set();
+  let eligibilityRequestId = 0;
+
+  const FIRST_FEE = 850;
+  const EXTRA_FEE = 350;
+
+  const form = document.getElementById('registrationForm');
+  const classList = document.getElementById('classList');
+  const submitButton = document.getElementById('submitButton');
+
+  function getCategory(className) {
+    if (className.startsWith('Proud')) return 'Proud';
+    if (className.startsWith('Pedal')) return 'Pedal';
+
+    if (
+      className.startsWith('Racing') ||
+      className.startsWith('Super Mini Girl') ||
+      className.startsWith('Super Big Girl')
+    ) {
+      return 'Racing';
+    }
+
+    return '';
+  }
+
+  function getSelectedClasses() {
+    return Array.from(
+      document.querySelectorAll(
+        '#classList input[type="checkbox"]:checked'
+      )
+    ).map(input => input.value);
+  }
+
+  // เก็บรุ่นที่เลือกไว้แม้เปลี่ยนแท็บ
+  const selectedClasses = new Set();
+
+  function loadClasses() {
+    google.script.run
+      .withSuccessHandler(function(groups) {
+        if (!groups || typeof groups !== 'object') {
+          classList.textContent = 'ข้อมูลรุ่นการแข่งขันไม่ถูกต้อง';
+          return;
+        }
+
+        classGroups = {
+          Proud: Array.isArray(groups.Proud) ? groups.Proud : [],
+          Racing: Array.isArray(groups.Racing) ? groups.Racing : [],
+          Pedal: Array.isArray(groups.Pedal) ? groups.Pedal : []
+        };
+
+        classesLoaded = true;
+        renderClasses();
+        updateTotal();
+        refreshAgeEligibility();
+        updateSubmitButton();
+      })
+      .withFailureHandler(function(error) {
+        classList.textContent = 'โหลดรุ่นการแข่งขันไม่สำเร็จ';
+        showMessage(error, 'error');
+        updateSubmitButton();
+      })
+      .getClasses();
+  }
+
+  function renderClasses() {
+    classList.replaceChildren();
+
+    const dob = document.getElementById('dob').value;
+    const gender = document.getElementById('gender').value;
+
+    if (!dob || !gender) {
+      classList.textContent = 'กรุณากรอกวันเกิดและเลือกเพศก่อน ระบบจึงจะแสดงรุ่นที่สมัครได้';
+      return;
+    }
+
+    if (!eligibilityLoaded) {
+      classList.textContent = 'กำลังตรวจสอบรุ่นที่ตรงกับอายุและเพศ...';
+      return;
+    }
+
+    const classes = (classGroups[activeCategory] || [])
+      .filter(className => eligibleClassNames.has(className));
+
+    if (classes.length === 0) {
+      classList.textContent = 'ไม่พบรุ่นที่ตรงกับอายุและเพศในประเภท ' + activeCategory;
+      return;
+    }
+
+    classes.forEach(function(className) {
+      const label = document.createElement('label');
+      label.className = 'class-item';
+
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.name = 'classes';
+      checkbox.value = className;
+      checkbox.checked = selectedClasses.has(className);
+      checkbox.disabled = !registrationOpen || submitting;
+
+      checkbox.addEventListener('change', function() {
+        if (checkbox.checked) {
+          selectedClasses.add(className);
+        } else {
+          selectedClasses.delete(className);
+        }
+
+        updateTotal();
+        updateSubmitButton();
+      });
+
+      const text = document.createElement('span');
+      text.textContent = className;
+
+      label.appendChild(checkbox);
+      label.appendChild(text);
+      classList.appendChild(label);
+    });
+  }
+
+  function refreshAgeEligibility() {
+    const dob = document.getElementById('dob').value;
+    const gender = document.getElementById('gender').value;
+    const status = document.getElementById('ageEligibilityStatus');
+    const requestId = ++eligibilityRequestId;
+
+    eligibilityLoaded = false;
+    eligibleClassNames = new Set();
+
+    if (!dob || !gender) {
+      selectedClasses.clear();
+      status.textContent = 'กรุณากรอกวันเกิดและเลือกเพศ เพื่อแสดงรุ่นที่สมัครได้';
+      renderClasses();
+      updateTotal();
+      updateSubmitButton();
+      return;
+    }
+
+    status.textContent = 'กำลังตรวจสอบอายุและรุ่นที่สมัครได้...';
+    renderClasses();
+    updateSubmitButton();
+
+    google.script.run
+      .withSuccessHandler(function(result) {
+        if (requestId !== eligibilityRequestId) return;
+
+        const classes = result && Array.isArray(result.eligibleClasses)
+          ? result.eligibleClasses
+          : [];
+
+        eligibleClassNames = new Set(classes);
+        eligibilityLoaded = true;
+
+        // ถ้าเปลี่ยนวันเกิดหรือเพศ ให้เอารุ่นที่ไม่เข้าเกณฑ์ออกจากรายการที่เลือกไว้
+        selectedClasses.forEach(function(className) {
+          if (!eligibleClassNames.has(className)) {
+            selectedClasses.delete(className);
+          }
+        });
+
+        const counts = result.eligibleByCategory || {};
+        status.textContent = 'อายุ ' + (result.ageDescription || (result.ageText + ' ปี')) +
+          ' ณ เดือนแข่งขัน ' + result.raceMonthLabel +
+          ' — รุ่นที่สมัครได้: Proud ' + (counts.Proud || 0) +
+          ', Racing ' + (counts.Racing || 0) +
+          ', Pedal ' + (counts.Pedal || 0) + ' รุ่น';
+
+        const ageHint = document.getElementById('ageEligibilityHint');
+        if (ageHint) {
+          ageHint.textContent = result.ageYears === 5 && result.ageMonths === 0
+            ? 'ตามเกณฑ์ที่ผู้จัดกำหนด อายุ 5.0 ปีสามารถเลือก Proud 5.1–6.0 ปี และ Racing 5.1–5.6, 5.7–6.0, 6.1–7.0 ปี รวมถึงรุ่น Open ที่ไม่เกินอายุสูงสุดได้'
+            : 'เกณฑ์นี้ตรวจเฉพาะอายุสูงสุดของแต่ละรุ่น เด็กที่อายุน้อยกว่าช่วงชื่อรุ่นสมัครได้ โดยระบบแสดงรุ่นในแท็บ Proud / Racing / Pedal';
+        }
+
+        renderClasses();
+        updateTotal();
+        updateSubmitButton();
+      })
+      .withFailureHandler(function(error) {
+        if (requestId !== eligibilityRequestId) return;
+
+        eligibilityLoaded = false;
+        eligibleClassNames = new Set();
+        selectedClasses.clear();
+        status.textContent = error && error.message
+          ? error.message
+          : 'ตรวจสอบอายุไม่สำเร็จ กรุณาตรวจสอบวันเกิด';
+        renderClasses();
+        updateTotal();
+        updateSubmitButton();
+      })
+      .getEligibleClasses(dob, gender);
+  }
+
+  document.getElementById('dob').addEventListener('change', refreshAgeEligibility);
+  document.getElementById('gender').addEventListener('change', refreshAgeEligibility);
+  document.getElementById('acceptedRules').addEventListener('change', updateSubmitButton);
+
+  document.querySelectorAll('.tab').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      activeCategory = tab.dataset.category;
+
+      document.querySelectorAll('.tab').forEach(function(item) {
+        item.classList.toggle('active', item === tab);
+      });
+
+      renderClasses();
+    });
+  });
+
+  function updateTotal() {
+    const totals = {
+      Proud: 0,
+      Racing: 0,
+      Pedal: 0
+    };
+
+    selectedClasses.forEach(function(className) {
+      const category = getCategory(className);
+      if (category) totals[category]++;
+    });
+
+    const breakdown = document.getElementById('feeBreakdown');
+    breakdown.replaceChildren();
+
+    let total = 0;
+    let anySelected = false;
+
+    ['Proud', 'Racing', 'Pedal'].forEach(function(category) {
+      const count = totals[category];
+
+      if (!count) return;
+
+      anySelected = true;
+
+      const fee = FIRST_FEE + (count - 1) * EXTRA_FEE;
+      total += fee;
+
+      const row = document.createElement('div');
+      row.className = 'fee-row';
+
+      const label = document.createElement('span');
+      label.textContent = category + ' (' + count + ' รุ่น)';
+
+      const amount = document.createElement('strong');
+      amount.textContent = fee.toLocaleString('th-TH') + ' บาท';
+
+      row.appendChild(label);
+      row.appendChild(amount);
+      breakdown.appendChild(row);
+    });
+
+    if (!anySelected) {
+      const hint = document.createElement('p');
+      hint.className = 'muted';
+      hint.textContent = 'ยังไม่ได้เลือกรุ่น';
+      breakdown.appendChild(hint);
+    }
+
+    document.getElementById('totalFee').textContent =
+      total.toLocaleString('th-TH') + ' บาท';
+  }
+
+  let countdownTimer = null;
+
+  function renderRegistrationCountdown(status) {
+    const box = document.getElementById('registrationCountdown');
+    const value = document.getElementById('countdownValue');
+    const note = document.getElementById('countdownNote');
+
+    if (countdownTimer !== null) {
+      clearInterval(countdownTimer);
+      countdownTimer = null;
+    }
+
+    if (!status || !status.closeAtMs) {
+      value.textContent = 'เปิดรับสมัครอยู่';
+      note.textContent = 'ยังไม่ได้กำหนดวันปิดรับสมัคร';
+      box.classList.remove('closed');
+      return;
+    }
+
+    const closeAtMs = Number(status.closeAtMs);
+    const closeDate = new Date(closeAtMs);
+    note.textContent = 'ปิดรับสมัครวันที่ ' + closeDate.toLocaleString('th-TH', {
+      day: '2-digit', month: '2-digit', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', hour12: false
+    }) + ' น.';
+
+    function updateCountdown() {
+      const remainingMs = closeAtMs - Date.now();
+      if (remainingMs <= 0) {
+        value.textContent = 'ปิดรับสมัครแล้ว';
+        note.textContent = 'หมดเขตรับสมัครแล้ว ไม่สามารถส่งใบสมัครได้';
+        box.classList.add('closed');
+        registrationOpen = false;
+        document.getElementById('registrationStatus').textContent = 'ปิดรับสมัครแล้ว';
+        renderClasses();
+        updateSubmitButton();
+        if (countdownTimer !== null) {
+          clearInterval(countdownTimer);
+          countdownTimer = null;
+        }
+        return;
+      }
+
+      const totalSeconds = Math.floor(remainingMs / 1000);
+      const days = Math.floor(totalSeconds / 86400);
+      const hours = Math.floor((totalSeconds % 86400) / 3600);
+      const minutes = Math.floor((totalSeconds % 3600) / 60);
+      const seconds = totalSeconds % 60;
+      value.textContent = days + ' วัน ' +
+        String(hours).padStart(2, '0') + ':' +
+        String(minutes).padStart(2, '0') + ':' +
+        String(seconds).padStart(2, '0');
+      box.classList.remove('closed');
+    }
+
+    updateCountdown();
+    if (closeAtMs > Date.now()) {
+      countdownTimer = setInterval(updateCountdown, 1000);
+    }
+  }
+
+  function loadRegistrationStatus() {
+    google.script.run
+      .withSuccessHandler(function(status) {
+        statusLoaded = true;
+        registrationOpen = Boolean(status && status.open);
+
+        document.getElementById('registrationStatus').textContent =
+          status && status.message
+            ? status.message
+            : 'ไม่สามารถตรวจสอบสถานะรับสมัครได้';
+        renderRegistrationCountdown(status);
+
+        if (!registrationOpen) {
+          showMessage('ขณะนี้ไม่สามารถส่งใบสมัครได้', 'error');
+        }
+
+        renderClasses();
+        updateSubmitButton();
+      })
+      .withFailureHandler(function(error) {
+        statusLoaded = true;
+        registrationOpen = false;
+
+        document.getElementById('registrationStatus').textContent =
+          'ตรวจสอบสถานะรับสมัครไม่สำเร็จ';
+        document.getElementById('countdownValue').textContent = 'ตรวจสอบไม่ได้';
+        document.getElementById('countdownNote').textContent = 'กรุณาโหลดหน้าเว็บใหม่อีกครั้ง';
+
+        showMessage(error, 'error');
+        updateSubmitButton();
+      })
+      .getRegistrationStatus();
+  }
+
+  function updateSubmitButton() {
+    if (submitting) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'กำลังบันทึกข้อมูล...';
+      return;
+    }
+
+    if (!statusLoaded || !classesLoaded) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'กำลังเตรียมระบบ...';
+      return;
+    }
+
+    if (!registrationOpen) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'ปิดรับสมัครแล้ว';
+      return;
+    }
+
+    if (!eligibilityLoaded) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'กรอกวันเกิดและเลือกเพศ';
+      return;
+    }
+
+    if (eligibleClassNames.size === 0) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'ไม่พบรุ่นที่ตรงเกณฑ์';
+      return;
+    }
+
+    if (selectedClasses.size === 0) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'เลือกรุ่นที่สมัคร';
+      return;
+    }
+
+    if (!document.getElementById('acceptedRules').checked) {
+      submitButton.disabled = true;
+      submitButton.textContent = 'กรุณายอมรับกติกาก่อนสมัคร';
+      return;
+    }
+
+    submitButton.disabled = false;
+    submitButton.textContent = 'สมัครนักแข่ง';
+  }
+
+  form.addEventListener('submit', function(event) {
+    event.preventDefault();
+    sendForm();
+  });
+
+  function sendForm() {
+    if (submitting) return;
+
+    const name = document.getElementById('name').value.trim();
+    const nicknameTh = document.getElementById('nicknameTh').value.trim();
+    const nicknameEn = document.getElementById('nicknameEn').value.trim();
+    const dob = document.getElementById('dob').value;
+    const gender = document.getElementById('gender').value;
+    const parentName = document.getElementById('guardian').value.trim();
+    const phone = document.getElementById('phone').value.trim();
+
+    // ใช้ Set ที่เก็บการเลือกไว้ทุกแท็บ ไม่ใช่เฉพาะแท็บปัจจุบัน
+    const classes = Array.from(selectedClasses);
+
+    if (!name || !nicknameTh || !nicknameEn || !dob || !gender || !parentName || !phone) {
+      showMessage('กรุณากรอกข้อมูลให้ครบทุกช่อง รวมถึงชื่อเล่นภาษาไทยและภาษาอังกฤษ', 'error');
+      return;
+    }
+
+    if (!classesLoaded) {
+      showMessage('กำลังโหลดรุ่นการแข่งขัน กรุณารอสักครู่', 'error');
+      return;
+    }
+
+    if (!eligibilityLoaded) {
+      showMessage('กรุณารอให้ระบบตรวจสอบอายุและเพศก่อนสมัคร', 'error');
+      return;
+    }
+
+    const invalidClasses = classes.filter(className => !eligibleClassNames.has(className));
+    if (invalidClasses.length > 0) {
+      showMessage('มีรุ่นที่ไม่ตรงกับอายุหรือเพศ กรุณาเลือกใหม่: ' + invalidClasses.join(', '), 'error');
+      return;
+    }
+
+    if (classes.length === 0) {
+      showMessage('กรุณาเลือกอย่างน้อย 1 รุ่น', 'error');
+      return;
+    }
+
+    if (!document.getElementById('acceptedRules').checked) {
+      showMessage('กรุณาอ่านและกดยอมรับกติกาการแข่งขันก่อนสมัคร', 'error');
+      document.getElementById('acceptedRules').focus();
+      return;
+    }
+
+    if (!statusLoaded || !registrationOpen) {
+      showMessage('ระบบยังไม่เปิดรับสมัคร หรือไม่สามารถตรวจสอบสถานะได้', 'error');
+      return;
+    }
+
+    // ชื่อฟิลด์ตรงกับ Code.gs
+    const data = {
+      name: name,
+      nicknameTh: nicknameTh,
+      nicknameEn: nicknameEn,
+      team: document.getElementById('team').value.trim(),
+      dob: dob,
+      gender: gender,
+      parentName: parentName,
+      phone: phone,
+      classes: classes,
+      acceptedRules: document.getElementById('acceptedRules').checked === true
+    };
+
+    submitting = true;
+    clearMessage();
+    updateSubmitButton();
+    renderClasses();
+
+    google.script.run
+      .withSuccessHandler(function(result) {
+        submitting = false;
+
+        if (!result || result.success !== true) {
+          showMessage(
+            result && result.message
+              ? result.message
+              : 'สมัครไม่สำเร็จ กรุณาลองใหม่',
+            'error'
+          );
+          renderClasses();
+          updateSubmitButton();
+          return;
+        }
+
+        if (result.paymentUrl) {
+          // ไปหน้าชำระเงินทันทีหลังบันทึกใบสมัครสำเร็จ
+          showMessage('สมัครสำเร็จ กำลังเปิดหน้าโอนเงิน...', 'success');
+          window.location.href = result.paymentUrl;
+          return;
+        }
+
+        showMessage('สมัครสำเร็จ แต่ไม่พบลิงก์ชำระเงิน กรุณาติดต่อผู้จัดงาน', 'error');
+        submitButton.disabled = true;
+        submitButton.textContent = 'สมัครสำเร็จ';
+      })
+      .withFailureHandler(function(error) {
+        submitting = false;
+        showMessage(error, 'error');
+        renderClasses();
+        updateSubmitButton();
+      })
+      .submitRegistration(data);
+  }
+
+  function showMessage(error, type) {
+    const el = document.getElementById('message');
+    const text =
+      error && error.message ? error.message : String(error || '');
+
+    el.textContent = text;
+    el.className = type || '';
+  }
+
+  function clearMessage() {
+    const el = document.getElementById('message');
+    el.textContent = '';
+    el.className = '';
+  }
+
+  loadClasses();
+  loadRegistrationStatus();
+</script>
+</body>
+</html>

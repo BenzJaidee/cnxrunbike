@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<base target="_top">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>CNX RUN BIKE - โอนเงินและแนบสลิป</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--red:#c6283d;--red2:#d93a50;--gold:#f2c94c;--bg:#000;--s1:#1c1c1e;--s2:#2c2c2e;--sep:rgba(255,255,255,.12);--tx:#f5f5f7;--mu:#a1a1a6;--r:22px;color-scheme:dark}
+*{box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;color:var(--tx);font:17px/1.5 -apple-system,BlinkMacSystemFont,"SF Pro Text","Noto Sans Thai","Sukhumvit Set",Thonburi,sans-serif;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+.nav{position:sticky;top:0;z-index:20;background:rgba(0,0,0,.72);backdrop-filter:saturate(180%) blur(20px);-webkit-backdrop-filter:saturate(180%) blur(20px);border-bottom:1px solid var(--sep);padding-top:env(safe-area-inset-top)}
+.nav-in{max-width:680px;margin:0 auto;height:48px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;font-size:14px}
+.brand{font-weight:700;letter-spacing:.04em}.brand b{color:var(--red2)}
+.page{max-width:680px;margin:0 auto;padding:0 16px calc(40px + env(safe-area-inset-bottom))}
+.hero{text-align:center;padding:56px 8px 36px;background:radial-gradient(70% 60% at 50% 0,rgba(198,40,61,.28),transparent 70%)}
+h1{margin:0;font-size:clamp(40px,12vw,72px);line-height:1.04;font-weight:700;letter-spacing:-.03em}
+.lead{margin:12px 0 0;font-size:clamp(19px,5vw,24px);color:var(--mu);font-weight:500}
+h2{margin:0 0 4px;font-size:22px;line-height:1.25;font-weight:700;letter-spacing:-.02em}
+p{margin:8px 0 0}.muted{color:var(--mu);font-size:14px}
+.card{background:var(--s1);border-radius:var(--r);padding:24px 20px;margin:0 0 14px}
+.status{padding:12px 14px;margin:14px 0 0;border-radius:14px;background:var(--s2);font-size:15px;overflow-wrap:anywhere}
+.field-label{display:block;margin:18px 0 8px;font-size:14px;font-weight:600;color:var(--mu)}
+input[type=text],input[type=date],input[type=tel],select{display:block;width:100%;min-height:52px;padding:12px 16px;border:0;border-radius:14px;background:var(--s2);color:var(--tx);font:inherit;font-size:17px;outline:none;-webkit-appearance:none;appearance:none}
+select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23a1a1a6' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center;padding-right:40px}
+input::placeholder{color:#6e6e73}
+input:focus,select:focus{box-shadow:0 0 0 3px rgba(242,201,76,.45)}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.primary,button.primary{display:block;width:100%;min-height:56px;margin:0;padding:14px 20px;border:0;border-radius:999px;background:var(--red);color:#fff;font:inherit;font-size:18px;font-weight:600;cursor:pointer;transition:background .2s,transform .15s}
+.primary:hover{background:var(--red2)}.primary:active{transform:scale(.98)}
+.primary:disabled,button:disabled{background:var(--s2);color:#6e6e73;cursor:not-allowed;transform:none}
+#message{margin-top:14px;white-space:pre-wrap;overflow-wrap:anywhere;text-align:center;font-size:15px}
+.error{color:#ff8a98}.success{color:#7fe3a1}
+[hidden]{display:none!important}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.pill{display:inline-block;margin-top:18px;padding:6px 14px;border-radius:999px;background:rgba(242,201,76,.14);color:var(--gold);font-size:14px;font-weight:600}
+.details{display:grid;gap:0;margin-top:18px;border-radius:16px;background:var(--s2);overflow:hidden}
+.detail{display:flex;justify-content:space-between;gap:16px;padding:14px 16px;border-bottom:1px solid var(--sep);overflow-wrap:anywhere}
+.detail:last-child{border:0}.detail span{color:var(--mu);font-size:15px;flex:none}.detail strong{text-align:right;font-weight:600}
+.amount{margin-top:22px;text-align:center;font-size:clamp(40px,12vw,60px);font-weight:700;letter-spacing:-.03em;color:var(--gold);line-height:1.1}
+.bank{margin-top:14px;border-radius:18px;padding:6px 18px;background:linear-gradient(145deg,#3a2a05,#1c1c1e 75%)}
+.bankline{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid var(--sep)}
+.bankline:last-child{border:0}.bankline span:first-child{color:var(--mu)}.bankline strong{text-align:right;overflow-wrap:anywhere}
+.account{font-size:clamp(24px,7vw,30px);letter-spacing:.04em;color:var(--gold);font-variant-numeric:tabular-nums}
+input[type=file]{display:block;width:100%;padding:14px;border-radius:14px;background:var(--s2);color:var(--mu);font:inherit;font-size:15px}
+input[type=file]::file-selector-button{margin-right:12px;padding:9px 16px;border:0;border-radius:999px;background:var(--gold);color:#1a1405;font:inherit;font-weight:600;cursor:pointer}
+.primary{margin-top:18px}
+.fine{font-size:13px;color:var(--mu);margin-top:12px;text-align:center}
+.status.success{color:#7fe3a1}.status.error{color:#ff8a98}
+.hero{padding:44px 8px 28px}.hero h1{font-size:clamp(34px,10vw,56px)}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in"><span class="brand">CNX <b>RUN BIKE</b></span><span class="muted">ขั้นตอนที่ 2 จาก 2</span></div></nav>
+<main class="page">
+<header class="hero">
+  <h1>โอนเงินและแนบสลิป</h1>
+  <p class="lead">สมัครสำเร็จแล้ว ขั้นตอนต่อไปคือชำระค่าสมัคร</p>
+</header>
+
+<section class="card">
+  <div id="loading" class="status">กำลังโหลดข้อมูลใบสมัคร...</div>
+  <div id="registration" hidden>
+    <div class="details">
+      <div class="detail"><span>RacerID</span><strong id="racerId">-</strong></div>
+      <div class="detail"><span>ชื่อนักแข่ง</span><strong id="racerName">-</strong></div>
+      <div class="detail"><span>รุ่นที่สมัคร</span><strong id="classes">-</strong></div>
+      <div class="detail"><span>สถานะ</span><strong id="paymentStatus">-</strong></div>
+    </div>
+    <div class="amount" id="amount">0 บาท</div>
+  </div>
+</section>
+
+<section class="card">
+  <h2>ข้อมูลสำหรับโอนเงิน</h2>
+  <div class="bank">
+    <div class="bankline"><span>ธนาคาร</span><strong>กสิกรไทย (KBank)</strong></div>
+    <div class="bankline"><span>ชื่อบัญชี</span><strong>นายพงศกร ใจดี</strong></div>
+    <div class="bankline"><span>เลขที่บัญชี</span><strong class="account">187-2-51597-2</strong></div>
+  </div>
+  <p class="muted">ตรวจสอบยอดให้ตรงกับค่าสมัคร แล้วแนบหลักฐานการโอนเงินด้านล่าง</p>
+</section>
+
+<section class="card">
+  <h2>แนบหลักฐานการโอนเงิน</h2>
+  <p class="muted">รองรับ JPG, PNG, WEBP หรือ PDF ขนาดไม่เกิน 4 MB</p>
+  <form id="slipForm">
+    <label class="field-label" for="slip">เลือกไฟล์สลิป *</label>
+    <input id="slip" type="file" accept="image/jpeg,image/png,image/webp,application/pdf" required>
+    <button id="uploadButton" class="primary" type="submit">ส่งสลิปการโอนเงิน</button>
+  </form>
+  <div id="message" class="status" role="status" aria-live="polite" hidden></div>
+  <p class="fine">เมื่อส่งสลิปแล้ว สถานะจะเป็น “รอตรวจสอบ” และระบบจะพาไปหน้าขอบคุณอัตโนมัติ</p>
+</section>
+</main>
+<script>
+/* ตัวเชื่อม: ให้หน้าเว็บเรียกฟังก์ชันบน Netlify ด้วยรูปแบบเดิม google.script.run */
+window.google={script:{run:(function make(ok,no){return new Proxy({},{get(_,k){
+ if(k==='withSuccessHandler')return f=>make(f,no);
+ if(k==='withFailureHandler')return f=>make(ok,f);
+ return(...args)=>fetch('/.netlify/functions/api',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fn:k,args})})
+  .then(async r=>{let j={};try{j=await r.json()}catch(e){}if(!r.ok||j.error)throw new Error(j.error||'เกิดข้อผิดพลาด ('+r.status+')');return j.result})
+  .then(v=>ok&&ok(v),e=>no&&no(e))}})})(null,null)}};
+</script>
+<script>
+  const TOKEN = new URLSearchParams(location.search).get('token') || '';
+  const WEB_APP_URL = '/thanks.html';
+  const loadingEl = document.getElementById('loading');
+  const messageEl = document.getElementById('message');
+  const uploadButton = document.getElementById('uploadButton');
+
+  function showMessage(text, type) {
+    messageEl.hidden = false;
+    messageEl.textContent = text;
+    messageEl.className = 'status ' + (type || '');
+  }
+  function formatMoney(value) { return Number(value || 0).toLocaleString('th-TH') + ' บาท'; }
+
+  if (!TOKEN) {
+    loadingEl.textContent = 'ไม่พบรหัสคำขอชำระเงิน กรุณากลับไปติดต่อผู้จัดงาน';
+    loadingEl.classList.add('error');
+    uploadButton.disabled = true;
+  } else {
+    google.script.run
+      .withSuccessHandler(function(data) {
+        loadingEl.hidden = true;
+        document.getElementById('registration').hidden = false;
+        document.getElementById('racerId').textContent = data.racerId || '-';
+        document.getElementById('racerName').textContent = data.name || '-';
+        document.getElementById('classes').textContent = data.classes || '-';
+        document.getElementById('paymentStatus').textContent = data.status || 'ยังไม่ชำระ';
+        document.getElementById('amount').textContent = formatMoney(data.amount);
+        if (data.status === 'รอตรวจสอบ' || data.status === 'ชำระแล้ว') {
+          showMessage('ระบบได้รับสลิปแล้ว สถานะปัจจุบัน: ' + data.status, 'success');
+          document.getElementById('slip').disabled = true;
+          uploadButton.disabled = true;
+          uploadButton.textContent = 'ส่งสลิปแล้ว';
+        }
+      })
+      .withFailureHandler(function(error) {
+        loadingEl.textContent = error && error.message ? error.message : 'โหลดข้อมูลไม่สำเร็จ';
+        loadingEl.classList.add('error');
+        uploadButton.disabled = true;
+      })
+      .getPaymentRequest(TOKEN);
+  }
+
+  document.getElementById('slipForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const file = document.getElementById('slip').files[0];
+    if (!file) { showMessage('กรุณาเลือกไฟล์สลิปก่อนส่ง', 'error'); return; }
+    if (file.size > 4 * 1024 * 1024) { showMessage('ไฟล์ต้องมีขนาดไม่เกิน 4 MB', 'error'); return; }
+    const allowed = ['image/jpeg','image/png','image/webp','application/pdf'];
+    if (!allowed.includes(file.type)) { showMessage('รองรับเฉพาะ JPG, PNG, WEBP หรือ PDF', 'error'); return; }
+    uploadButton.disabled = true;
+    uploadButton.textContent = 'กำลังส่งสลิป...';
+    const reader = new FileReader();
+    reader.onload = function() {
+      const base64 = String(reader.result).split(',')[1];
+      google.script.run
+        .withSuccessHandler(function(result) {
+          if (!result || result.success !== true) {
+            showMessage(result && result.message ? result.message : 'ส่งสลิปไม่สำเร็จ', 'error');
+            uploadButton.disabled = false;
+            uploadButton.textContent = 'ส่งสลิปการโอนเงิน';
+            return;
+          }
+          showMessage('ส่งสลิปสำเร็จ กำลังไปหน้าขอบคุณ...', 'success');
+          const thanksUrl = WEB_APP_URL;
+          setTimeout(function() {
+            window.location.href = thanksUrl;
+          }, 500);
+        })
+        .withFailureHandler(function(error) {
+          showMessage(error && error.message ? error.message : String(error || 'ส่งสลิปไม่สำเร็จ'), 'error');
+          uploadButton.disabled = false;
+          uploadButton.textContent = 'ส่งสลิปการโอนเงิน';
+        })
+        .submitPaymentSlip(TOKEN, file.name, file.type, base64);
+    };
+    reader.onerror = function() {
+      showMessage('อ่านไฟล์ไม่สำเร็จ กรุณาเลือกไฟล์ใหม่', 'error');
+      uploadButton.disabled = false;
+      uploadButton.textContent = 'ส่งสลิปการโอนเงิน';
+    };
+    reader.readAsDataURL(file);
+  });
+</script>
+</body>
+</html>
